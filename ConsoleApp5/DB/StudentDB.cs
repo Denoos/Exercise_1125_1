@@ -10,7 +10,7 @@ class StudentDB
         students = new Dictionary<string, Student>();
     }
 
-    public List<Student> Search(string text)
+    internal List<Student> Search(string text)
     {
         List<Student> result = new();
         foreach (var student in students.Values)

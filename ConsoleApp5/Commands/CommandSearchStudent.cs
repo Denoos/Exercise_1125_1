@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ConsoleApp5.Commands
+﻿class CommandSearchStudent : CommandStudent
 {
-    internal class CommandSearchStudent
+    private StudentDB studentDB;
+
+    public CommandSearchStudent(StudentDB studentDB)
     {
+        this.studentDB = studentDB;
+    }
+
+    public override void Execute()
+    {
+        Console.Write("Введите имя студента: ");
+        List<Student> students = new List<Student>();
+        string studentData = Console.ReadLine();
+        Console.WriteLine(DB.StudentDB.Search(studentData));
     }
 }
