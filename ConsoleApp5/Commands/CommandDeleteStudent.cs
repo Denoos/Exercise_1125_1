@@ -9,15 +9,9 @@
 
     public override void Execute()
     {
-        Console.WriteLine("Создание студента...");
-        Student newStudent = studentDB.Create();
-        Console.WriteLine("Укажите имя...");
-        newStudent.FirstName = Console.ReadLine();
-        Console.WriteLine("Укажите фамилию...");
-        newStudent.LastName = Console.ReadLine();
-        if (studentDB.Update(newStudent))
-            Console.WriteLine("Студент создан!");
-        else
-            Console.WriteLine("Возникли необъяснимые ошибки! Информация потеряна.");
+        Console.Write("Введите имя или фамилию студента, который не ходил на пары Дяди Пушкина: ");
+        List<Student> students = studentDB.Search(Console.ReadLine());
+        for (int i = 0; i < students.Count; i++)
+            studentDB.Delete(students[i]);
     }
 }
