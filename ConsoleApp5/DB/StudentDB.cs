@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json;
 
 class StudentDB
 {
-    Dictionary<string, Student> students;
+    Dictionary<string, Student> students = new();
 
     public StudentDB()
     {
-        //load file (json)
-        students = new Dictionary<string, Student>();
+        if (File.Exists("students.json"))
+            students = JsonSerializer.Deserialize<Dictionary<string, Student>>(File.ReadAllText("students.json"));//load file (json)
     }
 
     internal List<Student> Search(string text)
@@ -33,7 +34,7 @@ class StudentDB
 
     public Student Create()
     {
-        Student newStudent = new Student {  UID = Guid.NewGuid().ToString()};
+        Student newStudent = new Student { UID = Guid.NewGuid().ToString() };
         students.Add(newStudent.UID, newStudent);
         return newStudent;
     }
@@ -49,6 +50,7 @@ class StudentDB
 
     void Save()
     {
+        File.WriteAllText("students.json", JsonSerializer.Serialize(students));
         // save file (json)
     }
 }
