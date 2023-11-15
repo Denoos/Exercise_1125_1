@@ -1,6 +1,7 @@
 ﻿class CommandManager
 {
     Dictionary<string, CommandStudent> commands = new();
+    Dictionary<string, CommandGroup> commandsToGroup = new();
     public void Start()
     {
         string command;
@@ -26,4 +27,8 @@
     {
         commands.Add(command, commandStudent);
     }
+        public void RegisterCommandToGroup(string command, CommandGroup commandGroup)
+        {
+        commandsToGroup.Add(command, commandGroup);
+        }
 }

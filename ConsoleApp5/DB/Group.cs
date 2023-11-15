@@ -1,4 +1,7 @@
 ﻿public class Group
 {
-    public string Student { get; set; }
+    public string Number { get; set; }
+    public string Students { get; set; }
+
+    public string UID { get; set; }
 }
