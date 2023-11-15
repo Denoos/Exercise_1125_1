@@ -25,7 +25,7 @@ class GroupDB
 
     public bool UpdateGroup(Group group)
     {
-        if (!groups.ContainsKey(group.UID))
+        if (!groups.ContainsKey(group.Number))
             return false;
         groups[group.UID] = group;
         Save();
