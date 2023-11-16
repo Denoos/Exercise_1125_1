@@ -2,6 +2,7 @@
 {
     Dictionary<string, CommandStudent> commands = new();
     Dictionary<string, CommandGroup> commandsToGroup = new();
+    Dictionary<string, CommandAboutGroupAndStudent> commandsAboutGroupAndStudent = new();
     public void Start()
     {
         string command;
@@ -25,6 +26,10 @@
         {
             commandsToGroup[command].Execute();
         }
+        if (commandsAboutGroupAndStudent.ContainsKey(command))
+        {
+            commandsAboutGroupAndStudent[command].Execute();
+        }
     }
 
     public void RegisterCommandToGroup(string command, CommandGroup commandGroup)
@@ -35,5 +40,8 @@
     {
         commands.Add(command, commandStudent);
     }
-    
+    public void RegisterCommandAboutGroupAndStudent(string command, CommandAboutGroupAndStudent commandAboutGroupAndStudent)
+    {
+        commandsAboutGroupAndStudent.Add(command, commandAboutGroupAndStudent);
+    }
 }

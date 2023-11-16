@@ -1,13 +1,39 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using System.Text.Json;
-using System.Text.RegularExpressions;
-
-internal class StudentGroupDB
+﻿public class StudentGroupDB
 {
-    public string group { get; set; }
-    public string student { get; set; }
-    internal StudentGroupDB() {  }
-    Dictionary<string, Group> groups = JsonSerializer.Deserialize<Dictionary<string, Group>>(File.ReadAllText("groups.json"));
-    Dictionary<string, Student> students = JsonSerializer.Deserialize<Dictionary<string, Student>>(File.ReadAllText("students.json"));
+    Dictionary<string, string> studentToGroup = new Dictionary<string, string>();
+    Dictionary<string, List<string>> groupOfStudent = new Dictionary<string, List<string>>();
 
+    private StudentDB studentDB;
+    private GroupDB groupDB;
+
+    StudentGroupDB(StudentDB studentDB, GroupDB groupDB)
+    {
+        this.studentDB = studentDB;
+        this.groupDB = groupDB;
+    }
+    public void AddStudentToGroup(string studentUID, string groupUID)
+    {
+        studentToGroup.Add(studentUID, groupUID);
+        if (groupOfStudent.ContainsKey(groupUID))
+        {
+            groupOfStudent[groupUID].Add(studentUID);
+        }
+        else
+        {
+            groupOfStudent.Add(groupUID, new List<string> { studentUID });
+        }
+        Console.WriteLine("Студент добавлен в Tруппу");
+    }
+    public void SearchGroupByStudent(string studentUID, string groupUID)
+    {
+        studentToGroup.Add(studentUID, groupUID);
+        if (groupOfStudent.ContainsKey(groupUID))
+        {
+            groupOfStudent[groupUID].Add(studentUID);
+        }
+        else
+        {
+            groupOfStudent.Add(groupUID, new List<string> { studentUID });
+        }
+    }
 }
