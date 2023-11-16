@@ -15,7 +15,7 @@ class CommandCreateGroup : CommandGroup
         Group newGroup = groupDB.CreateGroup();
         Console.WriteLine("Укажите номер...");
         newGroup.Number = Console.ReadLine();
-        if (groupDB.UpdateGroup(newGroup))
+        if (!groupDB.UpdateGroup(newGroup))
             Console.WriteLine("Группа создана!");
         else
             Console.WriteLine("Возникли необъяснимые ошибки! Информация потеряна.");

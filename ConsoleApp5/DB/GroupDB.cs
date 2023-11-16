@@ -7,9 +7,9 @@ class GroupDB
 
     public GroupDB()
     {
-        if (File.Exists("group.json"))
-            groups = JsonSerializer.Deserialize<Dictionary<string, Group>>(File.ReadAllText("group.json"));//load file (json)
-        else File.Create("group.json");
+         if (File.Exists("group.json"))
+             groups = JsonSerializer.Deserialize<Dictionary<string, Group>>(File.ReadAllText("group.json"));//load file (json)
+         else File.Create("group.json");
     }
 
     internal List<Group> SearchGroup(string text)
@@ -27,7 +27,7 @@ class GroupDB
     {
         if (!groups.ContainsKey(group.Number))
             return false;
-        groups[group.UID] = group;
+        groups[group.Number] = group;
         Save();
         return true;
     }

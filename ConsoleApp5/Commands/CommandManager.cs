@@ -21,14 +21,19 @@
         {
             commands[command].Execute();
         }
+        if (commandsToGroup.ContainsKey(command))
+        {
+            commandsToGroup[command].Execute();
+        }
     }
 
+    public void RegisterCommandToGroup(string command, CommandGroup commandGroup)
+    {
+        commandsToGroup.Add(command, commandGroup);
+    }
     public void RegisterCommand(string command, CommandStudent commandStudent)
     {
         commands.Add(command, commandStudent);
     }
-        public void RegisterCommandToGroup(string command, CommandGroup commandGroup)
-        {
-        commandsToGroup.Add(command, commandGroup);
-        }
+    
 }

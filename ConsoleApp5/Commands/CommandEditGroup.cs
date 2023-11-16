@@ -17,7 +17,7 @@
             Group edGroup = groups[i];
             Console.WriteLine("Укажите новый номер: ");
             edGroup.Number = Console.ReadLine();
-            if (groupDB.UpdateGroup(edGroup))
+            if (!groupDB.UpdateGroup(edGroup))
                 Console.WriteLine("Труппа создан!");
             else
                 Console.WriteLine("Возникли необъяснимые ошибки! Информация потеряна.");
