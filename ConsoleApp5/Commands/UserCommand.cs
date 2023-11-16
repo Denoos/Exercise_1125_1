@@ -1,4 +1,5 @@
-﻿abstract class CommandStudent
+﻿abstract class UserCommand
 {
     public abstract void Execute();
 }
+
