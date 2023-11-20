@@ -10,10 +10,10 @@ class Program
         StudentDB studentDB = new StudentDB();
         GroupDB groupDB = new GroupDB();
         StudentGroupDB studentgroupDB = new StudentGroupDB(studentDB, groupDB);
-        commandManager.RegisterCommand("CreateStudents", new CommandCreateStudent(studentDB));
-        commandManager.RegisterCommand("SearchStudents", new CommandSearchStudent(studentDB));
+        commandManager.RegisterCommand("CreateStudents", new CommandCreateBullet(studentDB));
+        commandManager.RegisterCommand("SearchStudents", new CommandSearchBullet(studentDB));
         commandManager.RegisterCommand("DeleteStudents", new CommandDeleteStudent(studentDB));
-        commandManager.RegisterCommand("EditStudents", new CommandEditStudent(studentDB));
+        commandManager.RegisterCommand("EditStudents", new CommandEditBullet(studentDB));
         commandManager.RegisterCommand("CreateGroup", new CommandCreateGroup(groupDB));
         commandManager.RegisterCommand("SearchGroup", new CommandSearchGroup(groupDB));
         commandManager.RegisterCommand("AddStudentByGroup", new CommandCreateSG(studentgroupDB));

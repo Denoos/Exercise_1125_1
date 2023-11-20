@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
-class CommandSearchStudent : UserCommand
+class CommandSearchBullet : CommandUser
 {
     private StudentDB studentDB;
 
-    public CommandSearchStudent(StudentDB studentDB)
+    public CommandSearchBullet(StudentDB studentDB)
     {
         this.studentDB = studentDB;
     }

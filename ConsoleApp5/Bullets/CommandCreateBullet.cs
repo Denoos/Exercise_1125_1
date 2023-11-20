@@ -1,8 +1,8 @@
-﻿class CommandCreateStudent : UserCommand
+﻿class CommandCreateBullet : CommandUser
 {
     private StudentDB studentDB;
 
-    public CommandCreateStudent(StudentDB studentDB)
+    public CommandCreateBullet(StudentDB studentDB)
     {
         this.studentDB = studentDB;
     }

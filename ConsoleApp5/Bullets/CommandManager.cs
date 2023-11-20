@@ -1,6 +1,7 @@
 ﻿class CommandManager
 {
-    Dictionary<string, UserCommand> commands = new();
+    Dictionary<string, CommandUser> commands = new();
+    (string descr, CommandUser command) discription;
     public void Start()
     {
         string command;
@@ -22,7 +23,7 @@
         }
     }
 
-    public void RegisterCommand(string command, UserCommand commandStudent)
+    public void RegisterCommand(string command, CommandUser commandStudent)
     {
         commands.Add(command, commandStudent);
     }

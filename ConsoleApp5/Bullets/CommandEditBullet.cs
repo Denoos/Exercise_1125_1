@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class CommandEditStudent : UserCommand
+class CommandEditBullet : CommandUser
 {
     private StudentDB studentDB;
 
-    public CommandEditStudent(StudentDB studentDB)
+    public CommandEditBullet(StudentDB studentDB)
     {
         this.studentDB = studentDB;
     }
