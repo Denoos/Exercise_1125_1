@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp5.DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,33 +7,34 @@ using System.Threading.Tasks;
 
 class CommandEditBullet : CommandUser
 {
-    private StudentDB studentDB;
+    private BulletsDB bulletsDB;
 
-    public CommandEditBullet(StudentDB studentDB)
+    public CommandEditBullet(BulletsDB bulletsDB)
     {
-        this.studentDB = studentDB;
+        this.bulletsDB = bulletsDB;
     }
-
     public override void Execute()
     {
-        Console.WriteLine("Поиск студента...");
-        List<Student> students = studentDB.Search("");
-        for (int i = 0; i < students.Count; i++)
+        Console.WriteLine("Поиск снаряда: ");
+        List<Bullets> bullets = bulletsDB.Search(Console.ReadLine());
+        for (int i = 0; i < bullets.Count; i++)
         {
-            Console.WriteLine($"{i + 1}).{students[i].LastName} {students[i].FirstName} {students[i].UID}");
+            Console.WriteLine($"{i + 1}) Название: {bullets[i].Name}; Масса заряда в тротиловом эквиваленте: {bullets[i].massOfExplosivesInTNTEquivalent}; Масса: {bullets[i].Weight}; BID: {bullets[i].BID}");
 
-            Console.WriteLine("Укажите порядковый номер...");
+            Console.Write("Укажите порядковый номер: ");
             int.TryParse(Console.ReadLine(), out int edit);
-            if (students.Count > edit - 1)
+            if (bullets.Count > edit - 1)
             {
-                Console.WriteLine("Измените имя...");
-                students[i].FirstName = Console.ReadLine();
-                Console.WriteLine("Измените фамилию...");
-                students[i].FirstName = Console.ReadLine();
-                if (studentDB.Update(students[i]))
-                    Console.WriteLine("Студент отредачен!");
+                Console.Write("Измените название: ");
+                bullets[i].Name = Console.ReadLine();
+                Console.Write("Измените вес: ");
+                bullets[i].Weight = Console.ReadLine();
+                Console.Write("Укажите мощность заряда в тротиловом эквиваленте: ");
+                bullets[i].massOfExplosivesInTNTEquivalent = Console.ReadLine();
+                if (bulletsDB.Update(bullets[i]))
+                    Console.WriteLine("Снаряд отредактирован!");
                 else
-                    Console.WriteLine("Студент НЕ отредачен >:(");
+                    Console.WriteLine("Снаряд НЕ отредактирован!");
             }
         }
         

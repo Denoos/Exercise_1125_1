@@ -1,23 +1,27 @@
-﻿class CommandCreateBullet : CommandUser
-{
-    private StudentDB studentDB;
+﻿using ConsoleApp5.DB;
 
-    public CommandCreateBullet(StudentDB studentDB)
+class CommandCreateBullet : CommandUser
+{
+    private BulletsDB newBullets;
+
+    public CommandCreateBullet(BulletsDB bulletsDB)
     {
-        this.studentDB = studentDB;
+        this.newBullets = bulletsDB;
     }
 
     public override void Execute()
     {
-        Console.WriteLine("Создание студента...");
-        Student newStudent = studentDB.Create();
-        Console.WriteLine("Укажите имя...");
-        newStudent.FirstName = Console.ReadLine();
-        Console.WriteLine("Укажите фамилию...");
-        newStudent.LastName = Console.ReadLine();
-        if (studentDB.Update(newStudent))
-            Console.WriteLine("Студент создан!");
+        Console.WriteLine("Создание снаряда.");
+        Bullets newBullet = newBullets.Create();
+        Console.Write("Укажите название: ");
+        newBullet.Name = Console.ReadLine();
+        Console.Write("Укажите мощность заряда в тротиловом эквиваленте: ");
+        newBullet.massOfExplosivesInTNTEquivalent = Console.ReadLine();
+        Console.Write("Укажите массу снаряда: ");
+        newBullet.Weight = Console.ReadLine();
+        if (newBullets.Update(newBullet))
+            Console.WriteLine("Снаряд создан!");
         else
-            Console.WriteLine("Возникли необъяснимые ошибки! Информация потеряна.");
+            Console.WriteLine("Возникли необъяснимые ошибки! Информация потеряна. Возможно такой снаряд уже существует.");
     }
 }

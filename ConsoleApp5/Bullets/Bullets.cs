@@ -8,10 +8,10 @@ namespace ConsoleApp5.DB
 {
     public class Bullets
     {
-        public string GunPowderPowerAtTrotillEquivalent { get; set; }
-        public string Caliber { get; set; }
+        public string massOfExplosivesInTNTEquivalent { get; set; }
         public string Weight { get; set; }
         public string Name { get; set; }
+        public string BID { get; set; }
         
     }
 }

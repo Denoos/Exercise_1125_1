@@ -1,13 +1,13 @@
 ﻿class CommandManager
 {
-    Dictionary<string, CommandUser> commands = new();
-    (string descr, CommandUser command) discription;
+    Dictionary<string, CommandUser> listOfCommands = new();
+    (string discriptionOfCommand, CommandUser commandForDiscription) discription;
     public void Start()
     {
         string command;
         do
         {
-            Console.WriteLine("Введите команду");
+            Console.Write("Введите команду: ");
             command = Console.ReadLine();
             TestCommand(command);
         }
@@ -17,14 +17,14 @@
 
     void TestCommand(string? command)
     {
-        if (commands.ContainsKey(command))
+        if (listOfCommands.ContainsKey(command))
         {
-            commands[command].Execute();
+            listOfCommands[command].Execute();
         }
     }
 
-    public void RegisterCommand(string command, CommandUser commandStudent)
+    public void RegisterCommand(string command, CommandUser commandBullets)
     {
-        commands.Add(command, commandStudent);
+        listOfCommands.Add(command, commandBullets);
     }
 }

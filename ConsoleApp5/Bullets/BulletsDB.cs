@@ -1,5 +1,6 @@
 ﻿using ConsoleApp5.DB;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text.Json;
 
 class BulletsDB
@@ -8,7 +9,6 @@ class BulletsDB
 
     public BulletsDB()
     {
-        //load file (json)
         if (!File.Exists("bullet.json"))
             bullets = new Dictionary<string, Bullets>();
         else
@@ -16,7 +16,6 @@ class BulletsDB
             {
                 bullets = JsonSerializer.Deserialize<Dictionary<string, Bullets>>(fs);
             }
-
     }
 
     public List<Bullets> Search(string text)
@@ -26,41 +25,40 @@ class BulletsDB
         {
             if (bullet.Weight.Contains(text) ||
                     bullet.Name.Contains(text) ||
-                    bullet.GunPowderPowerAtTrotillEquivalent.Contains(text) ||
-                    bullet.Caliber.Contains(text))
+                    bullet.BID.Contains(text) ||
+                    bullet.massOfExplosivesInTNTEquivalent.Contains(text))
                 result.Add(bullet);
         }
         return result;
     }
 
-    public bool Update(Bullets bullets)
+    public bool Update(Bullets bullet)
     {
-        if (!bullets.ContainsKey(bullets.Name))
+        if (!bullets.ContainsKey(bullet.BID))
             return false;
-        bullets[bullets.Name] = bullets;
+        bullets[bullet.BID] = bullet;
         Save();
         return true;
     }
 
     public Bullets Create()
     {
-        Bullets newBullet = new Bullets();
-        bullets.Add(newBullet.Name, newBullet);
+        Bullets newBullet = new Bullets { BID = Guid.NewGuid().ToString() };
+        bullets.Add(newBullet.BID, newBullet);
         return newBullet;
     }
 
-    public bool Delete(Bullets bullets)
+    public bool Delete(Bullets bullet)
     {
-        if (!bullets.ContainsKey(bullets.Name))
+        if (!bullets.ContainsKey(bullet.BID))
             return false;
-        bullets.Remove(bullets.Name);
+        bullets.Remove(bullet.BID);
         Save();
         return true;
     }
 
     void Save()
     {
-        //save file (json)
         using (FileStream fs = new FileStream("bullet.json", FileMode.OpenOrCreate))
         {
             JsonSerializer.Serialize(fs, bullets);
