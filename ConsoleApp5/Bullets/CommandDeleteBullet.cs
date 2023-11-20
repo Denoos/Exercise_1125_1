@@ -27,6 +27,6 @@ class CommandDeleteBullet : CommandUser
         Console.WriteLine("Снаряд успешно удалён!");
             else
             Console.WriteLine("Не удалось удалить снаряд!");
-
+        bulletsDB.Save();
     }
 }

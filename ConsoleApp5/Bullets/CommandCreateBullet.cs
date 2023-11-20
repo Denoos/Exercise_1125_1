@@ -23,5 +23,6 @@ class CommandCreateBullet : CommandUser
             Console.WriteLine("Снаряд создан!");
         else
             Console.WriteLine("Возникли необъяснимые ошибки! Информация потеряна. Возможно такой снаряд уже существует.");
+        newBullets.Save();
     }
 }

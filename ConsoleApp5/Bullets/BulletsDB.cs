@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text.Json;
 
-class BulletsDB
+internal class BulletsDB
 {
     Dictionary<string, Bullets> bullets;
 
@@ -14,7 +14,7 @@ class BulletsDB
         else
             using (FileStream fs = new FileStream("bullet.json", FileMode.OpenOrCreate))
             {
-                bullets = JsonSerializer.Deserialize<Dictionary<string, Bullets>>(fs);
+               bullets = JsonSerializer.Deserialize<Dictionary<string, Bullets>>(fs);
             }
     }
 
@@ -57,7 +57,7 @@ class BulletsDB
         return true;
     }
 
-    void Save()
+    public void Save()
     {
         using (FileStream fs = new FileStream("bullet.json", FileMode.OpenOrCreate))
         {

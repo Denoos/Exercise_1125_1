@@ -37,7 +37,7 @@ class CommandEditBullet : CommandUser
                     Console.WriteLine("Снаряд НЕ отредактирован!");
             }
         }
-        
 
+        bulletsDB.Save();
     }
 }
